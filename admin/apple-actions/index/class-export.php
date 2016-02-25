@@ -66,7 +66,18 @@ class Export extends Action {
 		//$author = ucfirst( get_the_author_meta( 'display_name', $post->post_author ) );
 		$article = \Frontline\Query::get_post_by_id($post->ID);
 		$authors = $article->get_authors();
-		$author = $authors[0]->get_display_name();
+		$i = 0;
+		$len = count($authors);
+		foreach($authors as $a) {
+			$author .= $a->get_display_name(); 
+			if ( !empty ( $a->get_author_info() ) ) {
+				$author .= ', ' . $a->get_author_info();
+			}
+			if ($i != $len - 1) {
+				$author .= ' • ';
+			}
+			$i++;
+		}
 
 		// Set the default date format
 		$date_format = 'M j, Y | g:i A';

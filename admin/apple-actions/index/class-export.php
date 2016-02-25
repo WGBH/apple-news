@@ -63,7 +63,10 @@ class Export extends Action {
 		$post_thumb = wp_get_attachment_url( get_post_thumbnail_id( $this->id ) ) ?: null;
 
 		// Get the author
-		$author = ucfirst( get_the_author_meta( 'display_name', $post->post_author ) );
+		//$author = ucfirst( get_the_author_meta( 'display_name', $post->post_author ) );
+		$article = \Frontline\Query::get_post_by_id($post->ID);
+		$authors = $article->get_authors();
+		$author = $authors[0]->get_display_name();
 
 		// Set the default date format
 		$date_format = 'M j, Y | g:i A';

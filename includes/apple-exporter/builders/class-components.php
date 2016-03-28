@@ -170,6 +170,11 @@ class Components extends Builder {
 			$components[] = $this->get_component_from_shortname( 'cover', $this->content_cover() )->to_array();
 		}
 
+		// Cover caption
+		if ( $this->content_cover_caption() ) {
+			$components[] = $this->get_component_from_shortname( 'cover_caption', $this->content_cover_caption() )->to_array();
+		}
+
 		// Add byline
 		if ( $this->content_byline() ) {
 			$components[] = $this->get_component_from_shortname( 'byline', $this->content_byline() )->to_array();

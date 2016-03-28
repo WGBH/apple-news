@@ -50,6 +50,14 @@ class Exporter_Content {
 	private $cover;
 
 	/**
+	 * Cover image caption for the content being exported.
+	 *
+	 * @var string
+	 * @access private
+	 */
+	private $cover_caption;
+
+	/**
 	 * Byline for the content being exported.
 	 *
 	 * @var string
@@ -76,12 +84,13 @@ class Exporter_Content {
 	 * @param string $byline
 	 * @param Settings $settings
 	 */
-	function __construct( $id, $title, $content, $intro = null, $cover = null, $byline = null, $settings = null ) {
+	function __construct( $id, $title, $content, $intro = null, $cover = null, $cover_caption = null, $byline = null, $settings = null ) {
 		$this->id       = $id;
 		$this->title    = $title;
 		$this->content  = $content;
 		$this->intro    = $intro;
 		$this->cover    = $cover;
+		$this->cover_caption    = $cover_caption;
 		$this->byline   = $byline;
 		$this->settings = $settings ?: new Exporter_Content_Settings();
 	}
@@ -134,6 +143,16 @@ class Exporter_Content {
 	 */
 	public function cover() {
 		return $this->cover;
+	}
+
+	/**
+	 * Get the content cover caption.
+	 *
+	 * @return string
+	 * @access public
+	 */
+	public function cover_caption() {
+		return $this->cover_caption;
 	}
 
 	/**

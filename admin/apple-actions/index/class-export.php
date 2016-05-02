@@ -79,6 +79,9 @@ class Export extends Action {
 			$i++;
 		}
 
+		// Get the image caption
+		$img_caption = $article->get_full_featured_img_caption();
+
 		// Set the default date format
 		$date_format = 'M j, Y | g:i A';
 
@@ -126,6 +129,7 @@ class Export extends Action {
 			$content,
 			$excerpt,
 			$post_thumb,
+			$img_caption,
 			$byline,
 			$this->fetch_content_settings()
 		);

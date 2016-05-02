@@ -107,6 +107,16 @@ abstract class Builder {
 	}
 
 	/**
+	 * Gets the content cover.
+	 *
+	 * @access protected
+	 * @return Cover
+	 */
+	protected function content_cover_caption() {
+		return $this->content->cover_caption();
+	}
+
+	/**
 	 * Gets a content setting.
 	 * @access protected
 	 * @param string $name

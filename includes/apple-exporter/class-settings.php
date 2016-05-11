@@ -71,7 +71,7 @@ class Settings {
 		'ad_margin' => 15,
 
 		// Default component order
-		'meta_component_order' => array( 'title', 'cover', 'byline' ),
+		'meta_component_order' => array( 'title', 'cover', 'cover_caption', 'byline' ),
 	);
 
 	/**

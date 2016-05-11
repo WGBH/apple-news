@@ -70,15 +70,16 @@ class Export extends Action {
 		//$author = ucfirst( get_the_author_meta( 'display_name', $post->post_author ) );
 		$article = \Frontline\Query::get_post_by_id($post->ID);
 		$authors = $article->get_authors();
+		$byline_author = '';
 		$i = 0;
 		$len = count($authors);
 		foreach($authors as $a) {
-			$author .= $a->get_display_name(); 
+			$byline_author .= $a->get_display_name(); 
 			if ( !empty ( $a->get_author_info() ) ) {
-				$author .= ', ' . $a->get_author_info();
+				$byline_author .= ', ' . $a->get_author_info();
 			}
 			if ($i != $len - 1) {
-				$author .= ' • ';
+				$byline_author .= ' • ';
 			}
 			$i++;
 		}
@@ -93,7 +94,7 @@ class Export extends Action {
 		$byline_format = $this->get_setting( 'byline_format' );
 		if ( ! empty( $byline_format ) ) {
 			// Find and replace the author format placeholder the name, if set
-			$byline = str_replace( '#author#', $author, $byline_format );
+			$byline = str_replace( '#author#', $byline_author, $byline_format );
 
 			// Attempt to parse the date format from the remaining string
 			$matches = array();
@@ -107,7 +108,7 @@ class Export extends Action {
 			// Use the default format
 			$byline = sprintf(
 				'by %1$s | %2$s',
-				$author,
+				$byline_author,
 				date( $date_format, strtotime( $post->post_date ) )
 			);
 		}

@@ -4,7 +4,7 @@ Donate link: http://wordpress.org
 Tags: publish, apple, news, iOS
 Requires at least: 4.0
 Tested up to: 4.4.2
-Stable tag: 1.0.5
+Stable tag: 1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -38,6 +38,12 @@ Installing the Publish to Apple News plugin is similar to the process of install
 1. Activate the Publish to Apple News plugin using the “Plugins” menu in WordPress.
 
 Once activated, the "Apple News" menu should appear in your WordPress Admin panel.
+
+BREAKING CHANGE IN 1.1: Please note the "Options" page has been merged into a single page for setting sections, preview and pull quotes when pushing content to Apple News. This both adds functionality and streamlines the workflow.
+
+IMPORTANT NOTE: Apple News format requires that all images are bundled with the content when pushed to the API. It is required that web your host enable `allow_url_fopen` in your PHP configuration in order for this to function properly. Please ensure this is enabled and supported by your web host before reporting any issues with image errors from the plugin or API.
+
+Please read this for more information: http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen
 
 = Troubleshooting: Resolving Potential Permissions Issues =
 
@@ -95,13 +101,13 @@ On the other hand, if you’ve chosen not to automatically publish your content 
 
 **Individual Controls**
 
-To publish a single post to your Apple News channel (or perform other actions), locate the desired post in the list of your locally published content, and hover your mouse immediately below the post’s title. This will display a contextual menu, presenting the following choices: “Options”, “Download”, and “Publish”. In addition, for posts already published to Apple News, two more choices will be displayed: “Delete from Apple News” and “Copy News URL“.
+To publish a single post to your Apple News channel (or perform other actions), locate the desired post in the list of your locally published content, and hover your mouse immediately below the post’s title. This will display a contextual menu, presenting the following choices: “Download” and “Publish”. In addition, for posts already published to Apple News, two more choices will be displayed: “Delete from Apple News” and “Copy News URL“.
 
-Choosing “Publish” or “Delete from Apple News” will either push the current version of the selected post to Apple News, or permanently remove the post from Apple News. You can override either choice at any future time (e.g., a post deleted from Apple News can later be published once again if desired). Note that once a post has been deleted from Apple News, no further updates will automatically be published to Apple News, regardless of whether you’ve enabled “Automatically Publish to Apple News” in your general settings.
+Choosing “Publish” will take you to a screen where you can select the sections to publish to, set the article as a preview, and optionally add a Pull Quote for the selected post. In addition to entering a pull quote, you can choose to place it at the top, middle, or bottom of the selected post. Click the button at the bottom to push the current version of the selected post to Apple News
+
+Choosing “Delete from Apple News” will permanently remove the post from Apple News. You can override either choice at any future time (e.g., a post deleted from Apple News can later be published once again if desired). Note that once a post has been deleted from Apple News, no further updates will automatically be published to Apple News, regardless of whether you’ve enabled “Automatically Publish to Apple News” in your general settings.
 
 The “Download” option will generate a JSON document describing the selected post to your browser’s default Downloads location.
-
-Finally, the “Options” menu allows you to create a Pull Quote for the selected post. In addition to entering a pull quote, you can choose to place it at the top, middle, or bottom of the selected post.
 
 **Bulk Publishing Controls**
 
@@ -111,6 +117,8 @@ Warning: Using Bulk Publishing for a large number of pre-existing posts at one t
 
 You can choose to publish several posts to your Apple News channel at once, using the Bulk Actions control located at the top left of this section. Simply check any number of desired posts, then select “publish” from the Bulk Actions menu. This will open a page displaying the posts you’ve selected, and the status of each post as it is pushed to Apple News. Note that while bulk publishing actions are in progress, you should not close your browser window or navigate away from this page. Doing so will halt the bulk action in progress.
 
+Bulk publishing will use the default section for your channel unless you have previously set the channel via the Apple News meta box on the post edit screen.
+
 = Tips =
 
 In general, little effort should be required to prepare your content itself for publishing to Apple News once you’ve configured this plugin to your desired settings. Even so, these simple tips will help your content look its best:
@@ -118,6 +126,8 @@ In general, little effort should be required to prepare your content itself for 
 **Controlling Image Placement**
 
 By default, images inserted in your content will be placed inline, and will follow WordPress placement rules. You may find your images will be presented better within Apple News if you take the time to set the appearance of each image. To do this, in the WordPress text editor, click on an image, which will display a contextual alignment menu. This will provide you with a series of simple granular controls, allowing you to determine more precisely where each image will be displayed when your post appears in Apple News.
+
+The featured image on your post will automatically be used as the Apple News cover image. If no featured image is found, the first available image in the post will be used as the cover and will be automatically removed from the body in order to avoid duplication.
 
 Note that images smaller than the body width (~1024px) will always be aligned. If you want to display an image without alignment, make sure it’s big enough.
 
@@ -148,8 +158,38 @@ The Publish to Apple News plugin enables your WordPress blog content to be publi
 
 == Changelog ==
 
+= 1.1 =
+* Added composer support (thanks ryanmarkel!)
+* Removed unnecessary ob_start() on every page load
+* Fixed issue with manual publish button on post edit screen
+* Fixed issue with bottom bulk actions menu on Apple News list table
+* Added ability to publish to any section
+* Added ability to publish preview articles
+
+= 1.0.8 =
+* Added support for date metadata (https://developer.apple.com/library/ios/documentation/General/Conceptual/Apple_News_Format_Ref/Metadata.html#//apple_ref/doc/uid/TP40015408-CH3-SW1)
+* Fixed issue with shortcodes appearing in excerpt metadata
+* Added the ability to alter a component's style property via a filter
+* Refactored plugin settings to save as a single option value
+* Settings are now only deleted on uninstall and not deactivation
+* Removed unit tests that were making remote calls to the API
+* Added improved support for known YouTube and Vimeo embed formats
+
+= 1.0.7 =
+* Addressed issue with component order settings field for users with PHP strict mode enabled.
+
+= 1.0.6 =
+* Updated the plugin from 0.10 to 1.1 Apple News format.
+* Added alert options when unsupported embeds are found in the post content while publishing.
+* Added better handling for MIME_PART_INVALID_SIZE errors.
+* Added the ability to reorder the title, cover and byline components.
+* Updated ads to use new features available in the 1.1 Apple News format.
+* Minor settings page updates.
+* Resolved some PHP warnings on the dashboard.
+* Updated all unit tests and improved test coverage.
+
 = 1.0.5 =
-* Fixed performance issue caused by introduction of live post status, added 60 second cache and removed from email debugging.
+* Fixed a performance issue caused by introduction of live post status, added 60 second cache and removed from email debugging.
 
 = 1.0.4 =
 * Added canonicalURL to metadata (thanks @dashaluna)

@@ -14,6 +14,18 @@ installing other WordPress plugins. Simply perform these steps:
 Once activated, the "Apple News" menu should appear in your WordPress Admin
 panel.
 
+BREAKING CHANGE IN 1.1: Please note the "Options" page has been merged into a single
+page for setting sections, preview and pull quotes when pushing content to Apple News.
+This both adds functionality and streamlines the workflow.
+
+IMPORTANT NOTE: Apple News format requires that all images are bundled with the content
+when pushed to the API. It is required that web your host enable `allow_url_fopen` in your
+PHP configuration in order for this to function properly. Please ensure this is enabled
+and supported by your web host before reporting any issues with image errors from the
+plugin or API.
+
+[Please read this for more information.](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen)
+
 ###Troubleshooting: Resolving Potential Permissions Issues
 
 In most cases, the Publish to Apple News plugin should function immediately once
@@ -136,25 +148,25 @@ or later update — WordPress posts to Apple News.
 To publish a single post to your Apple News channel (or perform other actions),
 locate the desired post in the list of your locally published content, and hover
 your mouse immediately below the post’s title. This will display a contextual
-menu, presenting the following choices: “Options”, “Download”, and “Publish”. In
+menu, presenting the following choices: “Download” and “Publish”. In
 addition, for posts already published to Apple News, two more choices will be
 displayed: “Delete from Apple News” and “Copy News URL“.
 
-Choosing “Publish” or “Delete from Apple News” will either push the current
-version of the selected post to Apple News, or permanently remove the post from
+Choosing “Publish” will take you to a screen where you can select the sections to publish
+to, set the article as a preview, and optionally add a Pull Quote for the selected
+post. In addition to entering a pull quote, you can choose to place it at the
+top, middle, or bottom of the selected post. Click the button at the bottom to push the
+current version of the selected post to Apple News
+
+Choosing “Delete from Apple News” will permanently remove the post from
 Apple News. You can override either choice at any future time (e.g., a post
 deleted from Apple News can later be published once again if desired). Note that
 once a post has been deleted from Apple News, no further updates will
 automatically be published to Apple News, regardless of whether you’ve enabled
 “Automatically Publish to Apple News” in your general settings.
 
-The “Download” option will generate a JSON
-document describing the selected post to your
+The “Download” option will generate a JSON document describing the selected post to your
 browser’s default Downloads location.
-
-Finally, the “Options” menu allows you to create a Pull Quote for the selected
-post. In addition to entering a pull quote, you can choose to place it at the
-top, middle, or bottom of the selected post.
 
 ####Bulk Publishing Controls
 
@@ -177,6 +189,9 @@ of each post as it is pushed to Apple News. Note that while bulk publishing
 actions are in progress, you should not close your browser window or navigate
 away from this page. Doing so will halt the bulk action in progress.
 
+Bulk publishing will use the default section for your channel unless you have previously
+set the channel via the Apple News meta box on the post edit screen.
+
 
 ###Tips
 
@@ -193,6 +208,10 @@ image. To do this, in the WordPress text editor, click on an image, which will
 display a contextual alignment menu. This will provide you with a series of
 simple granular controls, allowing you to determine more precisely where each
 image will be displayed when your post appears in Apple News.
+
+The featured image on your post will automatically be used as the Apple News cover
+image. If no featured image is found, the first available image in the post will be used
+as the cover and will be automatically removed from the body in order to avoid duplication.
 
 Note that images smaller than the body width (~1024px) will always be aligned.
 If you want to display an image without alignment, make sure it’s big enough.

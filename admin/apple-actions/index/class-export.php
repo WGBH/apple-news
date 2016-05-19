@@ -54,10 +54,14 @@ class Export extends Action {
 
 		// Fetch WP_Post object, and all required post information to fill up the
 		// Exporter_Content instance.
-		$post       = get_post( $this->id );
+		$post = get_post( $this->id );
 
 		// Build the excerpt if required
-		$excerpt = ( empty( $post->post_excerpt ) ) ? wp_trim_excerpt( $post->post_content ) : $post->post_excerpt;
+		if ( empty( $post->post_excerpt ) ) {
+			$excerpt = wp_trim_words( strip_tags( strip_shortcodes( $post->post_content ) ), 55, '...' );
+		} else {
+			$excerpt = strip_tags( $post->post_excerpt );
+		}
 
 		// Get the post thumbnail
 		$post_thumb = wp_get_attachment_url( get_post_thumbnail_id( $this->id ) ) ?: null;
@@ -66,15 +70,16 @@ class Export extends Action {
 		//$author = ucfirst( get_the_author_meta( 'display_name', $post->post_author ) );
 		$article = \Frontline\Query::get_post_by_id($post->ID);
 		$authors = $article->get_authors();
+		$byline_author = '';
 		$i = 0;
 		$len = count($authors);
 		foreach($authors as $a) {
-			$author .= $a->get_display_name(); 
+			$byline_author .= $a->get_display_name(); 
 			if ( !empty ( $a->get_author_info() ) ) {
-				$author .= ', ' . $a->get_author_info();
+				$byline_author .= ', ' . $a->get_author_info();
 			}
 			if ($i != $len - 1) {
-				$author .= ' • ';
+				$byline_author .= ' • ';
 			}
 			$i++;
 		}
@@ -89,7 +94,7 @@ class Export extends Action {
 		$byline_format = $this->get_setting( 'byline_format' );
 		if ( ! empty( $byline_format ) ) {
 			// Find and replace the author format placeholder the name, if set
-			$byline = str_replace( '#author#', $author, $byline_format );
+			$byline = str_replace( '#author#', $byline_author, $byline_format );
 
 			// Attempt to parse the date format from the remaining string
 			$matches = array();
@@ -103,7 +108,7 @@ class Export extends Action {
 			// Use the default format
 			$byline = sprintf(
 				'by %1$s | %2$s',
-				$author,
+				$byline_author,
 				date( $date_format, strtotime( $post->post_date ) )
 			);
 		}
@@ -112,7 +117,6 @@ class Export extends Action {
 		$title      = apply_filters( 'apple_news_exporter_title', $post->post_title, $post->ID );
 		$excerpt    = apply_filters( 'apple_news_exporter_excerpt', $excerpt, $post->ID );
 		$post_thumb = apply_filters( 'apple_news_exporter_post_thumb', $post_thumb, $post->ID );
-		$date       = apply_filters( 'apple_news_exporter_date', $date, $post->ID );
 		$byline     = apply_filters( 'apple_news_exporter_byline', $byline, $post->ID );
 
 		// The post_content is not raw HTML, as WordPress editor cleans up

@@ -44,7 +44,7 @@ class Push extends API_Action {
 	 * @param boolean $doing_async
 	 * @return boolean
 	 */
-	public function perform( $doing_async = false ) {
+	public function perform( $doing_async = false, $user_id = null ) {
 		if ( 'yes' === $this->settings->get( 'api_async' ) && false === $doing_async ) {
 			// Do not proceed if this is already pending publish
 			$pending = get_post_meta( $this->id, 'apple_news_api_pending', true );
@@ -57,7 +57,7 @@ class Push extends API_Action {
 
 			wp_schedule_single_event( time(), \Admin_Apple_Async::ASYNC_PUSH_HOOK, array( $this->id, get_current_user_id() ) );
 		} else {
-			return $this->push();
+			return $this->push( $user_id );
 		}
 	}
 
@@ -109,9 +109,10 @@ class Push extends API_Action {
 	/**
 	 * Push the post using the API data.
 	 *
+	 * @param int $user_id
 	 * @access private
 	 */
-	private function push() {
+	private function push( $user_id = null ) {
 		if ( ! $this->is_api_configuration_valid() ) {
 			throw new \Apple_Actions\Action_Exception( __( 'Your Apple News API settings seem to be empty. Please fill in the API key, API secret and API channel fields in the plugin configuration page.', 'apple-news' ) );
 		}
@@ -133,7 +134,44 @@ class Push extends API_Action {
 		// generate_article uses Exporter->generate, so we MUST clean the workspace
 		// before and after its usage.
 		$this->clean_workspace();
-		list( $json, $bundles ) = $this->generate_article();
+		list( $json, $bundles, $errors ) = $this->generate_article();
+
+		// If there were errors, decide how to proceed based on the component alert settings
+		if ( ! empty( $errors[0]['component_errors'] ) ) {
+			// Build an list of the components that caused errors
+			$component_names = implode( ', ', $errors[0]['component_errors'] );
+
+			// Decide if we need to handle this
+			$component_alerts = $this->get_setting( 'component_alerts' );
+
+			if ( 'warn' === $component_alerts ) {
+				$alert_message = sprintf(
+					__( 'The following components are unsupported by Apple News and were removed: %s', 'apple-news' ),
+					$component_names
+				);
+
+				if ( empty( $user_id ) ) {
+					$user_id = get_current_user_id();
+				}
+
+				\Admin_Apple_Notice::error( $alert_message, $user_id );
+			} elseif ( 'fail' === $component_alerts ) {
+				$alert_message = sprintf(
+					__( 'The following components are unsupported by Apple News and prevented publishing: %s', 'apple-news' ),
+					$component_names
+				);
+
+				// Remove the pending designation if it exists
+				delete_post_meta( $this->id, 'apple_news_api_pending' );
+
+				// Remove the async in progress flag
+				delete_post_meta( $this->id, 'apple_news_api_async_in_progress' );
+
+				$this->clean_workspace();
+
+				throw new \Apple_Actions\Action_Exception( $alert_message );
+			}
+		}
 
 		// Validate the data before using since it's filterable.
 		// JSON should just be a string.
@@ -155,15 +193,32 @@ class Push extends API_Action {
 
 			do_action( 'apple_news_before_push', $this->id );
 
+			// Populate optional metadata
+			$meta = array(
+				'data' => array(),
+			);
+
+			// Get sections
+			$sections = get_post_meta( $this->id, 'apple_news_sections', true );
+			if ( is_array( $sections ) ) {
+				$meta['data']['links'] = array( 'section' => $sections );
+			}
+
+			// Get the isPreview setting
+			$is_preview = get_post_meta( $this->id, 'apple_news_is_preview', true );
+			if ( isset( $is_preview ) ) {
+				$meta['data']['isPreview'] = (bool) $is_preview;
+			}
+
 			if ( $remote_id ) {
 				// Update the current article from the API in case the revision changed
 				$this->get();
 
 				// Get the current revision
 				$revision = get_post_meta( $this->id, 'apple_news_api_revision', true );
-				$result   = $this->get_api()->update_article( $remote_id, $revision, $json, $bundles );
+				$result   = $this->get_api()->update_article( $remote_id, $revision, $json, $bundles, $meta );
 			} else {
-				$result = $this->get_api()->post_article_to_channel( $json, $this->get_setting( 'api_channel' ), $bundles );
+				$result = $this->get_api()->post_article_to_channel( $json, $this->get_setting( 'api_channel' ), $bundles, $meta );
 			}
 
 			// Save the ID that was assigned to this post in by the API.
@@ -232,6 +287,6 @@ class Push extends API_Action {
 		$this->exporter = $export_action->fetch_exporter();
 		$this->exporter->generate();
 
-		return array( $this->exporter->get_json(), $this->exporter->get_bundles() );
+		return array( $this->exporter->get_json(), $this->exporter->get_bundles(), $this->exporter->get_errors() );
 	}
 }

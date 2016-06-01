@@ -76,6 +76,7 @@ class Component_Factory {
 		self::register_component( 'instagram'    ,   '\\Apple_Exporter\\Components\\Instagram'       );
 		self::register_component( 'img'          ,   '\\Apple_Exporter\\Components\\Image'           );
 		self::register_component( 'iframe'       ,   '\\Apple_Exporter\\Components\\Embed_Web_Video' );
+		self::register_component( 'fl_cove_video',   '\\Apple_Exporter\\Components\\FL_Cove_Video'   );
 		self::register_component( 'video'        ,   '\\Apple_Exporter\\Components\\Video'           );
 		self::register_component( 'audio'        ,   '\\Apple_Exporter\\Components\\Audio'           );
 		self::register_component( 'heading'      ,   '\\Apple_Exporter\\Components\\Heading'         );

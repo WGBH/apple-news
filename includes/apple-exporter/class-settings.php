@@ -28,7 +28,7 @@ class Settings {
 		'layout_margin'   => 100,
 		'layout_gutter'   => 20,
 
-		'body_font'        => 'AvenirNext-Regular',
+		'body_font'        => 'Roboto-Regular',
 		'body_size'        => 18,
 		'body_color'       => '#000',
 		'body_link_color'  => '#428BCA',
@@ -36,15 +36,15 @@ class Settings {
 		'body_line_height' => 24,
 
 		'initial_dropcap' => 'yes',
-		'dropcap_font'    => 'Georgia-Bold',
+		'dropcap_font'    => 'Roboto-Regular',
 		'dropcap_color'   => '#000',
 
-		'byline_font'     => 'AvenirNext-Medium',
+		'byline_font'     => 'Roboto-Regular',
 		'byline_size'     => 17,
 		'byline_color'    => '#53585F',
 		'byline_format'		=> 'by #author# | #M j, Y | g:i A#',
 
-		'header_font'     => 'AvenirNext-Bold',
+		'header_font'     => 'CooperHewitt-Medium',
 		'header_color'    => '#000',
 		'header1_size'    => 48,
 		'header2_size'    => 32,
@@ -54,11 +54,17 @@ class Settings {
 		'header6_size'    => 16,
 		'header_line_height' => 52,
 
-		'pullquote_font'  => 'AvenirNext-Bold',
+		'pullquote_font'  => 'Roboto-Regular',
 		'pullquote_size'  => 48,
 		'pullquote_color' => '#53585F',
 		'pullquote_transform' => 'uppercase',
 		'pullquote_line_height' => 48,
+
+		'covercaption_font'  => 'Roboto-Regular',
+		'covercaption_size'  => 14,
+		'covercaption_color' => '#53585F',
+		'covercaption_transform' => 'uppercase',
+		'covercaption_line_height' => 14,
 
 		'component_alerts' => 'none',
 

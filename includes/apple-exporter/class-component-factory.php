@@ -83,10 +83,13 @@ class Component_Factory {
 		self::register_component( 'blockquote'   ,   '\\Apple_Exporter\\Components\\Quote'           );
 		self::register_component( 'p'            ,   '\\Apple_Exporter\\Components\\Body'            );
 		self::register_component( 'hr'           ,   '\\Apple_Exporter\\Components\\Divider'         );
+		self::register_component( 'fl_quote'     ,   '\\Apple_Exporter\\Components\\FL_Quote'        );
+		self::register_component( 'fl_quote_highlight'     ,   '\\Apple_Exporter\\Components\\FL_Quote_Highlight'        );
+		self::register_component( 'fl_quote_attribution'     ,   '\\Apple_Exporter\\Components\\FL_Quote_Attribution'        );
 		// Non HTML-based components
 		self::register_component( 'intro'        ,   '\\Apple_Exporter\\Components\\Intro'           );
 		self::register_component( 'cover'        ,   '\\Apple_Exporter\\Components\\Cover'           );      
-		self::register_component( 'cover_caption'        ,   '\\Apple_Exporter\\Components\\Cover_Caption'            );
+		self::register_component( 'cover_caption',   '\\Apple_Exporter\\Components\\Cover_Caption'   );
 		self::register_component( 'title'        ,   '\\Apple_Exporter\\Components\\Title'           );
 		self::register_component( 'byline'       ,   '\\Apple_Exporter\\Components\\Byline'          );
 		self::register_component( 'advertisement',   '\\Apple_Exporter\\Components\\Advertisement'   );

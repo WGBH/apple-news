@@ -58,6 +58,14 @@ class Exporter_Content {
 	private $cover_caption;
 
 	/**
+	 * FL Quote.
+	 *
+	 * @var string
+	 * @access private
+	 */
+	private $fl_quote;
+
+	/**
 	 * Byline for the content being exported.
 	 *
 	 * @var string

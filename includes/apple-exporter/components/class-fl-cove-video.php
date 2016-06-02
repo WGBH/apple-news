@@ -42,7 +42,7 @@ class FL_Cove_Video extends Component {
 		$this->json = array(
 			'role' => 'title',
 			'text'   => $this->markdown->parse($message),
-			'format' => 'markdown',
+			'format' => 'markdown'
 		);
 
 		$this->set_style();
@@ -67,12 +67,11 @@ class FL_Cove_Video extends Component {
 	private function set_style() {
 		$this->json[ 'textStyle' ] = 'fl-cove-video';
 		$this->register_style( 'fl-cove-video', array(
-			'fontName'      => $this->get_setting( 'pullquote_font' ),
-			'fontSize'      => 20,
+			'fontName'      => 'Roboto-Regular',
+			'fontSize'      => 15,
 			'textColor'     => '#CF1515',
-			'textTransform' => $this->get_setting( 'pullquote_transform' ),
-			'lineHeight'    => intval( $this->get_setting( 'pullquote_line_height' ) ),
-			'textAlignment' => 'center',
+			'lineHeight'    => 15,
+			'textAlignment' => 'center'
 		) );
 	}
 }

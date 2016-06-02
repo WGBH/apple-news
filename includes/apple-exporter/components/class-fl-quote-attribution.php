@@ -61,12 +61,11 @@ class Fl_Quote_Attribution extends Component {
 	 * @access private
 	 */
 	private function set_style() {
-		$this->json[ 'textStyle' ] = 'fl-pullquote-attribution';
-		$this->register_style( 'fl-pullquote-attribution', array(
-			'fontName'      => $this->get_setting( 'pullquote_font' ),
+		$this->json[ 'textStyle' ] = 'fl-quote-attribution';
+		$this->register_style( 'fl-quote-attribution', array(
+			'fontName'      => $this->get_setting( 'fl_quote_attribution_font' ),
 			'fontSize'      => 12,
-			'textColor'     => $this->get_setting( 'pullquote_color' ),
-			'textTransform' => $this->get_setting( 'pullquote_transform' ),
+			'textColor'     => $this->get_setting( 'fl_quote_attribution_color' ),
 			'lineHeight'    => 12,
 			'textAlignment' => 'center',
 		) );

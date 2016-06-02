@@ -36,6 +36,21 @@ class Admin_Apple_Settings_Section_Advanced extends Admin_Apple_Settings_Section
 				'type'    => 'float',
 				'sanitize' => 'floatval',
 			),
+			'fl_quote_line_height' => array(
+				'label'   => __( 'FL quote Line Height', 'apple-news' ),
+				'type'    => 'float',
+				'sanitize' => 'floatval',
+			),
+			'fl_quote_highlight_line_height' => array(
+				'label'   => __( 'FL quote highlight Line Height', 'apple-news' ),
+				'type'    => 'float',
+				'sanitize' => 'floatval',
+			),
+			'fl_quote_attribution_line_height' => array(
+				'label'   => __( 'FL quote attribution Line Height', 'apple-news' ),
+				'type'    => 'float',
+				'sanitize' => 'floatval',
+			),
 			'header_line_height' => array(
 				'label'   => __( 'Heading Line Height', 'apple-news' ),
 				'type'    => 'float',
@@ -52,7 +67,7 @@ class Admin_Apple_Settings_Section_Advanced extends Admin_Apple_Settings_Section
 		$this->groups = array(
 			'line_heights' => array(
 				'label'       => __( 'Line Heights', 'apple-news' ),
-				'settings'    => array( 'body_line_height', 'pullquote_line_height', 'header_line_height' ),
+				'settings'    => array( 'body_line_height', 'pullquote_line_height', 'fl_quote_line_height', 'fl_quote_highlight_line_height', 'fl_quote_attribution_line_height', 'header_line_height' ),
 			),
 			'alerts' => array(
 				'label'       => __( 'Alerts', 'apple-news' ),

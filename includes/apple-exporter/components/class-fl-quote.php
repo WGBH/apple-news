@@ -61,13 +61,12 @@ class Fl_Quote extends Component {
 	 * @access private
 	 */
 	private function set_style() {
-		$this->json[ 'textStyle' ] = 'fl-pullquote';
-		$this->register_style( 'fl-pullquote', array(
-			'fontName'      => $this->get_setting( 'pullquote_font' ),
-			'fontSize'      => intval( $this->get_setting( 'pullquote_size' ) ),
-			'textColor'     => $this->get_setting( 'pullquote_color' ),
-			'textTransform' => $this->get_setting( 'pullquote_transform' ),
-			'lineHeight'    => intval( $this->get_setting( 'pullquote_line_height' ) ),
+		$this->json[ 'textStyle' ] = 'fl-quote';
+		$this->register_style( 'fl-quote', array(
+			'fontName'      => $this->get_setting( 'fl_quote_font' ),
+			'fontSize'      => intval( $this->get_setting( 'fl_quote_size' ) ),
+			'textColor'     => $this->get_setting( 'fl_quote_color' ),
+			'lineHeight'    => intval( $this->get_setting( 'fl_quote_line_height' ) ),
 			'textAlignment' => 'center',
 		) );
 	}

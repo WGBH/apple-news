@@ -64,7 +64,7 @@ class Fl_Quote_Highlight extends Component {
 		$this->json[ 'textStyle' ] = 'fl-quote-highlight';
 		$this->register_style( 'fl-quote-highlight', array(
 			'fontName'      => $this->get_setting( 'fl_quote_highlight_font' ),
-			'fontSize'      => 100,
+			'fontSize'      => intval( $this->get_setting( 'fl_quote_highlight_size' ) ),
 			'textColor'     => '#CF1515',
 			'lineHeight'    => intval( $this->get_setting( 'fl_quote_highlight_line_height' ) ),
 			'textAlignment' => 'center',

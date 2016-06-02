@@ -133,6 +133,42 @@ class Admin_Apple_Settings_Section_Formatting extends Admin_Apple_Settings_Secti
 				'label'   => __( 'Pull quote transformation', 'apple-news' ),
 				'type'    => array( 'none', 'uppercase' ),
 			),
+			'fl_quote_font' => array(
+				'label'   => '',
+				'type'    => 'font',
+			),
+			'fl_quote_size' => array(
+				'label'   => __( 'Pull quote font size', 'apple-news' ),
+				'type'    => 'integer',
+			),
+			'fl_quote_color' => array(
+				'label'   => __( 'Pull quote color', 'apple-news' ),
+				'type'    => 'color',
+			),
+			'fl_quote_highlight_font' => array(
+				'label'   => '',
+				'type'    => 'font',
+			),
+			'fl_quote_highlight_size' => array(
+				'label'   => __( 'Pull quote font size', 'apple-news' ),
+				'type'    => 'integer',
+			),
+			'fl_quote_highlight_color' => array(
+				'label'   => __( 'Pull quote color', 'apple-news' ),
+				'type'    => 'color',
+			),
+			'fl_quote_attribution_font' => array(
+				'label'   => '',
+				'type'    => 'font',
+			),
+			'fl_quote_attribution_size' => array(
+				'label'   => __( 'Pull quote font size', 'apple-news' ),
+				'type'    => 'integer',
+			),
+			'fl_quote_attribution_color' => array(
+				'label'   => __( 'Pull quote color', 'apple-news' ),
+				'type'    => 'color',
+			),
 			'covercaption_font' => array(
 				'label'   => '',
 				'type'    => 'font',
@@ -207,6 +243,21 @@ class Admin_Apple_Settings_Section_Formatting extends Admin_Apple_Settings_Secti
 					__( 'Pull quote', 'apple-news' )
 				),
 				'settings'    => array( 'pullquote_font', 'pullquote_size', 'pullquote_color', 'pullquote_transform' ),
+			),
+			'fl_quote' => array(
+				'label'       => __( 'FL quote', 'apple-news' ),
+				'description' => __( "FL Quote", 'apple-news' ),
+				'settings'    => array( 'fl_quote_font', 'fl_quote_size', 'fl_quote_color' ),
+			),
+			'fl_quote_highlight' => array(
+				'label'       => __( 'FL quote highlight', 'apple-news' ),
+				'description' => __( "FL Quote Highlight", 'apple-news' ),
+				'settings'    => array( 'fl_quote_highlight_font', 'fl_quote_highlight_size', 'fl_quote_highlight_color' ),
+			),
+			'fl_quote_attribution' => array(
+				'label'       => __( 'Fl quote attribution', 'apple-news' ),
+				'description' => __( "FL Quote Attribution", 'apple-news' ),
+				'settings'    => array( 'fl_quote_attribution_font', 'fl_quote_attribution_size', 'fl_quote_attribution_color' ),
 			),
 			'covercaption' => array(
 				'label'       => __( 'Cover caption', 'apple-news' ),

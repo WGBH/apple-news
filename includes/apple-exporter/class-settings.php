@@ -60,6 +60,21 @@ class Settings {
 		'pullquote_transform' => 'uppercase',
 		'pullquote_line_height' => 48,
 
+		'fl_quote_font'  => 'Roboto-Regular',
+		'fl_quote_size'  => 48,
+		'fl_quote_color' => '#53585F',
+		'fl_quote_line_height' => 48,
+
+		'fl_quote_highlight_font'  => 'Roboto-Regular',
+		'fl_quote_highlight_size'  => 72,
+		'fl_quote_highlight_color' => '#53585F',
+		'fl_quote_highlight_line_height' => 72,
+
+		'fl_quote_attribution_font'  => 'Roboto-Regular',
+		'fl_quote_attribution_size'  => 12,
+		'fl_quote_attribution_color' => '#53585F',
+		'fl_quote_attribution_line_height' => 12,
+
 		'covercaption_font'  => 'Roboto-Regular',
 		'covercaption_size'  => 14,
 		'covercaption_color' => '#53585F',

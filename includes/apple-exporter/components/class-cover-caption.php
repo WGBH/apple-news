@@ -31,10 +31,10 @@ class Cover_Caption extends Component {
 	 * @access private
 	 */
 	private function set_style() {
-		$this->json[ 'textStyle' ] = 'default-caption';
-		$this->register_style( 'default-caption', array(
-			"fontName" => "HelveticaNeue",
-		     "fontSize" => 14,
+		$this->json[ 'textStyle' ] = 'cover-caption';
+		$this->register_style( 'cover-caption', array(
+			"fontName" => $this->get_setting( 'covercaption_font' ),
+		     "fontSize" => intval( $this->get_setting( 'covercaption_size' ) ),
 		     "textColor" => "#999",
 		) );
 	}
@@ -45,8 +45,8 @@ class Cover_Caption extends Component {
 	 * @access private
 	 */
 	private function set_default_layout() {
-		$this->json[ 'layout' ] = 'caption-layout';
-		$this->register_layout( 'caption-layout', array(
+		$this->json[ 'layout' ] = 'cover-caption-layout';
+		$this->register_layout( 'cover-caption-layout', array(
 			'margin'      => array( 'top' => 0, 'bottom' => 10 ),
 		) );
 	}

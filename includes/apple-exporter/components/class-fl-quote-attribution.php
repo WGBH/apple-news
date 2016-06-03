@@ -64,9 +64,9 @@ class Fl_Quote_Attribution extends Component {
 		$this->json[ 'textStyle' ] = 'fl-quote-attribution';
 		$this->register_style( 'fl-quote-attribution', array(
 			'fontName'      => $this->get_setting( 'fl_quote_attribution_font' ),
-			'fontSize'      => 12,
+			'fontSize'      => intval( $this->get_setting( 'fl_quote_attribution_size' ) ),
 			'textColor'     => $this->get_setting( 'fl_quote_attribution_color' ),
-			'lineHeight'    => 12,
+			'lineHeight'    => intval( $this->get_setting( 'fl_quote_attribution_line_height' ) ),
 			'textAlignment' => 'center',
 		) );
 	}

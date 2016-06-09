@@ -37,8 +37,6 @@ class FL_Cove_Video extends Component {
 
 		$url = $match[1];
 
-		$message = '[View this video on the original post](' . $url . ')';
-
 		$this->json = array(
 			'role' => 'container',
 			'style' => array(
@@ -69,7 +67,7 @@ class FL_Cove_Video extends Component {
 						'additions' => array(
 								array(
 										'type' => 'link',
-										'URL' => "http://www.apple.com",
+										'URL' => $url,
 										'rangeStart' => 0,
 										'rangeLength' => 41
 									)

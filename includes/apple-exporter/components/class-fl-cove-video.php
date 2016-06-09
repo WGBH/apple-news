@@ -74,6 +74,7 @@ class FL_Cove_Video extends Component {
 										'rangeLength' => 41
 									)
 							),
+						"textStyle" => "videoLink",
 						'inlineTextStyles' => array(
 								array( 
 										'rangeStart' => 0,
@@ -90,14 +91,12 @@ class FL_Cove_Video extends Component {
 
 		$this->set_style();
 	}
-	
 	/**
 	 * Set the style for the component.
 	 *
 	 * @access private
 	 */
 	private function set_style() {
-		$this->json[ 'textStyle' ] = 'videoLink';
 		$this->register_style( 'videoLink', array(
 			'dropCapStyle'  => array(
 					'numberOfLines' => 2,

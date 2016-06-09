@@ -2,7 +2,7 @@
 namespace Apple_Exporter\Components;
 
 /**
- * An HTML video tag representation.
+ * Replace Frontline Cove video embeds with a link to original article
  *
  * @since 0.2.0
  */
@@ -30,7 +30,7 @@ class FL_Cove_Video extends Component {
 	 * @access protected
 	 */
 	protected function build( $text ) {
-		// Remove initial and trailing tags: <video><p>...</p></video>
+		// Get the article permalink
 		if ( ! preg_match( '/data-permalink="([^"]+)"/', $text, $match ) ) {
 			return null;
 		}

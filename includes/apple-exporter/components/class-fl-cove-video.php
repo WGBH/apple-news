@@ -40,38 +40,75 @@ class FL_Cove_Video extends Component {
 		$message = '[View this video on the original post](' . $url . ')';
 
 		$this->json = array(
-			'role' => 'title',
-			'text'   => $this->markdown->parse($message),
-			'format' => 'markdown'
+			'role' => 'container',
+			'style' => array(
+					'border' => array(
+							'all' => array(
+									'color' => '#CCC',
+									'width' => 2
+								),
+							'left' => false,
+							'right' => false
+						),
+				),
+			'layout' => array(
+					'columnStart' => 0,
+					'columnSpan' => 4,
+					'contentInset' => true
+				),
+			'components' => array(
+					array(
+						'role' => 'body',
+						'text'   => ' VIEW THIS VIDEO ON THE ORIGINAL ARTICLE',
+						'layout' => array(
+								'margin' => array(
+										'top' => 20,
+										'bottom' => 20
+									)
+							),
+						'additions' => array(
+								array(
+										'type' => 'link',
+										'URL' => "http://www.apple.com",
+										'rangeStart' => 0,
+										'rangeLength' => 41
+									)
+							),
+						'inlineTextStyles' => array(
+								array( 
+										'rangeStart' => 0,
+										'rangeLength' => 1,
+										'lineHeight' => 0,
+										'textStyle' => array(
+												'fontName' => 'icomoon'
+										)
+								)
+						)
+				)
+			)
 		);
 
 		$this->set_style();
-		$this->set_layout();
 	}
-	/**
-	 * Set the layout for the component.
-	 *
-	 * @access private
-	 */
-	private function set_layout() {
-		$this->json['layout'] = 'fl-cove-video-layout';
-		$this->register_layout( 'fl-cove-video-layout', array(
-			'margin' => array( 'top' => 5, 'bottom' => 5 ),
-		) );
-	}
+	
 	/**
 	 * Set the style for the component.
 	 *
 	 * @access private
 	 */
 	private function set_style() {
-		$this->json[ 'textStyle' ] = 'fl-cove-video';
-		$this->register_style( 'fl-cove-video', array(
+		$this->json[ 'textStyle' ] = 'videoLink';
+		$this->register_style( 'videoLink', array(
+			'dropCapStyle'  => array(
+					'numberOfLines' => 2,
+					'numberOfCharacters' => 1,
+					'padding' => 5
+				),
 			'fontName'      => 'Roboto-Regular',
-			'fontSize'      => 15,
-			'textColor'     => '#CF1515',
-			'lineHeight'    => 15,
-			'textAlignment' => 'center'
+			'textAlignment' => 'left',
+			'fontSize' 		=> 20,
+			'lineHeight'	=> 24,
+			'hyphenation'	=> false
 		) );
 	}
 }

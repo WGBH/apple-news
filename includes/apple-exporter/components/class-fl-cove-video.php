@@ -99,7 +99,8 @@ class FL_Cove_Video extends Component {
 			'dropCapStyle'  => array(
 					'numberOfLines' => 2,
 					'numberOfCharacters' => 1,
-					'padding' => 5
+					'padding' => 5,
+					'textColor' => '#000'
 				),
 			'fontName'      => 'Roboto-Regular',
 			'textAlignment' => 'left',

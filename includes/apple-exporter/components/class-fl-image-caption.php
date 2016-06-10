@@ -75,7 +75,7 @@ class FL_Image_Caption extends Component {
 	private function set_default_layout() {
 		$this->json[ 'layout' ] = 'fl-image-caption-layout';
 		$this->register_layout( 'fl-image-caption-layout', array(
-			'margin'      => array( 'top' => 0, 'bottom' => 10 ),
+			'margin'      => array( 'top' => 10, 'bottom' => 10 ),
 		) );
 	}
 

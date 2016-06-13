@@ -60,8 +60,8 @@ class FL_Cove_Video extends Component {
 						'text'   => ' VIEW THIS VIDEO ON THE ORIGINAL ARTICLE',
 						'layout' => array(
 								'margin' => array(
-										'top' => 20,
-										'bottom' => 20
+										'top' => 10,
+										'bottom' => 10
 									)
 							),
 						'additions' => array(

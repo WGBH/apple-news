@@ -22,7 +22,6 @@ class Cover_Caption extends Component {
 
 		$this->set_style();
 
-		$this->set_default_layout();
 	}
 
 	/**
@@ -36,18 +35,6 @@ class Cover_Caption extends Component {
 			"fontName" => $this->get_setting( 'covercaption_font' ),
 		     "fontSize" => intval( $this->get_setting( 'covercaption_size' ) ),
 		     "textColor" => "#999",
-		) );
-	}
-
-	/**
-	 * Set the default layout for the component.
-	 *
-	 * @access private
-	 */
-	private function set_default_layout() {
-		$this->json[ 'layout' ] = 'cover-caption-layout';
-		$this->register_layout( 'cover-caption-layout', array(
-			'margin'      => array( 'top' => 0, 'bottom' => 10 ),
 		) );
 	}
 

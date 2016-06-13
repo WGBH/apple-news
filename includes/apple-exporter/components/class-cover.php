@@ -54,7 +54,7 @@ class Cover extends Component {
 		$this->register_full_width_layout( 'headerContainerLayout', array(
 			'ignoreDocumentMargin' => true,
 			'minimumHeight'        => '50vh',
-			'margin'               => array( 'top' => 0, 'bottom' => 25 ),
+			'margin'               => array( 'top' => 0, 'bottom' => 10 ),
 		) );
 	}
 

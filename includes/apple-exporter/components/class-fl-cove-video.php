@@ -43,7 +43,7 @@ class FL_Cove_Video extends Component {
 					'border' => array(
 							'all' => array(
 									'color' => '#CCC',
-									'width' => 2
+									'width' => 1
 								),
 							'left' => false,
 							'right' => false

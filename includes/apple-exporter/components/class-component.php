@@ -368,8 +368,8 @@ abstract class Component {
 
 		$this->register_layout( $name, array_merge(
 			array(
-				'columnStart' => $col_start,
-				'columnSpan'  => $col_span,
+				'columnStart' => 0,
+				'columnSpan'  => 12,
 			),
 			$spec
 		) );

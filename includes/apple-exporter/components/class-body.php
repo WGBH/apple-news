@@ -142,8 +142,8 @@ class Body extends Component {
 		// Now that we have the appropriate col_start, register the layout
 		$this->json[ 'layout' ] = 'body-layout';
 		$this->register_layout( 'body-layout', array(
-			'columnStart' => $col_start,
-			'columnSpan'  => $this->get_setting( 'body_column_span' ),
+			'columnStart' => 1,
+			'columnSpan'  => 10,
 			'margin'      => array( 'top' => 25, 'bottom' => 25 ),
 		) );
 	}

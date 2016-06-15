@@ -18,7 +18,7 @@ class Layout extends Builder {
 	 */
 	protected function build() {
 		return apply_filters( 'apple_news_layout', array(
-			'columns' => intval( $this->get_setting( 'layout_columns' ) ),
+			'columns' => 12,
 			'width'   => intval( $this->get_setting( 'layout_width' ) ),
 			'margin'  => intval( $this->get_setting( 'layout_margin' ) ),  // Defaults to 100
 			'gutter'  => intval( $this->get_setting( 'layout_gutter' ) ),  // Defaults to 20

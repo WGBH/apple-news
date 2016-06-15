@@ -46,7 +46,7 @@ class FL_Cove_Video extends Component {
 			'style' => array(
 				'fill' => array(
 					'type' => 'image',
-					'URL' => 'bundle://video_btn.jpg',
+					'URL' => 'http://www-tc.pbs.org/wgbh/frontline/wp-content/uploads/2016/06/video_btn.jpg',
 					'fillMode' => 'cover'
 					)
 				),

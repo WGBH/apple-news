@@ -65,10 +65,10 @@ class FL_Cove_Video extends Component {
 								'text' => '',
 								'textStyle' => array(
 									'textAlignment' => 'center',
-									'fontSize' => 56,
+									'fontSize' => 72,
 									'textColor' => '#FFF',
 									'fontName' => 'icomoon',
-									'lineHeight' => 56
+									'lineHeight' => 72
 									),
 								'layout' => array(
 									'margin' => array(
@@ -85,46 +85,19 @@ class FL_Cove_Video extends Component {
 									)
 								),
 							array(
-								'role' => 'heading',
-								'text' => 'View this video in the original article',
-								'textStyle' => array(
-									'fontName' => 'CooperHewitt-Medium',
-									'fontSize' => 36,
-									'textColor' => '#FFFFFF',
-									'textAlignment' => 'center',
-									'hyphenation' => false
-									),
-								'layout' => array(
-									'columnStart' => 2,
-									'columnSpan' => 6,
-									'margin' => array(
-										'top' => 0,
-										'bottom' => 0
-										)
-									),
-								'additions' => array(
-									array(
-										'type' => 'link',
-										'URL' => $url,
-										'rangeStart' => 0,
-										'rangeLength' => 39
-										)
-									)
-								),
-							array(
 								'role' => 'heading4',
-								'text'   => '  WATCH NOW  ',
+								'text'   => ' WATCH NOW ',
 								'textStyle' => array(
 									'backgroundColor' => '#E9E9E9',
 									'fontName' => 'CooperHewitt-Medium',
 									'textColor' => '#000000',
 									'fontSize' => 24,
-									'lineHeight' => 30,
+									'lineHeight' => 34,
 									'textAlignment' => 'center'
 									),
 								'layout' => array(
 										'margin' => array(
-												'top' => 15,
+												'top' => 10,
 												'bottom' => 20
 											)
 									),

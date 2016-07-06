@@ -48,7 +48,9 @@ class Byline extends Component {
 	 */
 	private function set_default_layout() {
 		$this->json[ 'layout' ] = 'byline-layout';
-		$this->register_full_width_layout( 'byline-layout', array(
+		$this->register_layout( 'byline-layout', array(
+			'columnStart' => 1,
+			'columnSpan' => 12,
 			'margin' => array( 'top' => 20, 'bottom' => 10 ),
 		) );
 	}

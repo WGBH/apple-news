@@ -39,55 +39,82 @@ class FL_Cove_Video extends Component {
 
 		$this->json = array(
 			'role' => 'container',
-			'style' => array(
-					'border' => array(
-							'all' => array(
-									'color' => '#CCC',
-									'width' => 1
-								),
-							'left' => false,
-							'right' => false
-						),
-				),
 			'layout' => array(
-					'columnStart' => 0,
-					'columnSpan' => 4,
-					'contentInset' => true
+				'columnStart' => 1,
+				'columnSpan' => 10
+				),
+			'style' => array(
+				'fill' => array(
+					'type' => 'image',
+					'URL' => 'http://www-tc.pbs.org/wgbh/frontline/wp-content/uploads/2016/06/video_btn.jpg',
+					'fillMode' => 'cover'
+					)
 				),
 			'components' => array(
-					array(
-						'role' => 'body',
-						'text'   => ' VIEW THIS VIDEO ON THE ORIGINAL ARTICLE',
-						'layout' => array(
-								'margin' => array(
-										'top' => 40,
-										'bottom' => 20
-									)
-							),
-						'additions' => array(
-								array(
+				array(
+					'role' => 'container',
+					'layout' => array(
+							'contentInset' => true
+						),
+					'style' => array(
+							'backgroundColor' => '#181818A6'
+						),
+					'components' => array(
+							array(
+								'role' => 'heading',
+								'text' => '',
+								'textStyle' => array(
+									'textAlignment' => 'center',
+									'fontSize' => 72,
+									'textColor' => '#FFF',
+									'fontName' => 'icomoon',
+									'lineHeight' => 72
+									),
+								'layout' => array(
+									'margin' => array(
+										'top' => 20
+										)
+									),
+								'additions' => array(
+									array(
 										'type' => 'link',
 										'URL' => $url,
 										'rangeStart' => 0,
-										'rangeLength' => 41
-									)
-							),
-						"textStyle" => "videoLink",
-						'inlineTextStyles' => array(
-								array( 
-										'rangeStart' => 0,
-										'rangeLength' => 1,
-										'lineHeight' => 0,
-										'textStyle' => array(
-												'fontName' => 'icomoon'
+										'rangeLength' => 3
 										)
+									)
+								),
+							array(
+								'role' => 'heading4',
+								'text'   => ' WATCH NOW ',
+								'textStyle' => array(
+									'backgroundColor' => '#E9E9E9',
+									'fontName' => 'CooperHewitt-Medium',
+									'textColor' => '#000000',
+									'fontSize' => 24,
+									'lineHeight' => 34,
+									'textAlignment' => 'center'
+									),
+								'layout' => array(
+										'margin' => array(
+												'top' => 10,
+												'bottom' => 20
+											)
+									),
+								'additions' => array(
+										array(
+												'type' => 'link',
+												'URL' => $url,
+												'rangeStart' => 0,
+												'rangeLength' => 15
+											)
+									)
 								)
+							)
 						)
 				)
-			)
 		);
 
-		$this->set_style();
 	}
 	/**
 	 * Set the style for the component.

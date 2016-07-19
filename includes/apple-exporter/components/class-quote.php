@@ -35,9 +35,30 @@ class Quote extends Component {
 		$text = $matches[1];
 
 		$this->json = array(
-			'role'   => 'quote',
-			'text'   => $this->markdown->parse( $text ),
-			'format' => 'markdown',
+			'role' => 'container',
+			'style' => array(
+				'border' => array(
+					'all' => array(
+						'width' => 5,
+						'style' => 'solid',
+						'color' => '#E7E5E7'
+						),
+					'top' => false,
+					'right' => false,
+					'bottom' => false
+					)
+				),
+			'components' => array(
+				array(
+					'role'   => 'quote',
+					'text'   => $this->markdown->parse( $text ),
+					'format' => 'markdown',
+					'textStyle' => 'default-pullquote',
+					'layout' => array(
+							'contentInset' => true
+						)
+				)
+			)
 		);
 
 		$this->set_style();
@@ -52,7 +73,18 @@ class Quote extends Component {
 	private function set_layout() {
 		$this->json['layout'] = 'quote-layout';
 		$this->register_layout( 'quote-layout', array(
-			'margin' => array( 'top' => 15, 'bottom' => 15 ),
+			'columnStart' => 2,
+			'columnSpan' => 9,
+			'contentInset' => array(
+				'top' => false,
+				'bottom' => false,
+				'left' => true,
+				'right' => true
+				),
+			'margin' => array( 
+				'top' => 15, 
+				'bottom' => 15 
+				),
 		) );
 	}
 
@@ -62,7 +94,7 @@ class Quote extends Component {
 	 * @access private
 	 */
 	private function set_style() {
-		$this->json[ 'textStyle' ] = 'default-pullquote';
+		//$this->json[ 'textStyle' ] = 'default-pullquote';
 		$this->register_style( 'default-pullquote', array(
 			'fontName'      => $this->get_setting( 'pullquote_font' ),
 			'fontSize'      => intval( $this->get_setting( 'pullquote_size' ) ),

@@ -97,8 +97,10 @@ class Exporter_Content {
 		$this->title    = $title;
 		$this->content  = $content;
 		$this->intro    = $intro;
+		if( !$this->hide_featured() ){
 		$this->cover    = $cover;
 		$this->cover_caption    = $cover_caption;
+		};
 		$this->byline   = $byline;
 		$this->settings = $settings ?: new Exporter_Content_Settings();
 	}
@@ -141,6 +143,16 @@ class Exporter_Content {
 	 */
 	public function intro() {
 		return $this->intro;
+	}
+
+	/**
+	 * Get the content feature override
+	 *
+	 * @return strings
+	 * @access public
+	 */
+	public function hide_featured() {
+	  return get_post_meta( $this->id, 'hide_image', true);
 	}
 
 	/**

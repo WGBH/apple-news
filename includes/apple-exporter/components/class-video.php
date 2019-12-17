@@ -39,10 +39,20 @@ class Video extends Component {
 
 		$url = $match[1];
 
-		$this->json = array(
-			'role' => 'video',
-			'URL'  => $url,
-		);
+		preg_match('/still="([^"]*)"/',  $text, $stills);
+
+		if( !empty( $stills[1] ) ){
+			$this->json = array(
+				'role' => 'video',
+				'URL'  => $url,
+				'stillURL' => $stills[1]
+			);
+		}else{
+			$this->json = array(
+				'role' => 'video',
+				'URL'  => $url,
+			);
+		}
 	}
 
 }
